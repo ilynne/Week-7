@@ -21,7 +21,7 @@ describe("/weather", () => {
 
   describe("GET /", () => {
     it("should return weather landing page with a form", async () => {
-      const res = await request(server).get("/weather");
+      const res = await request(server).get("/weather/");
       expect(res.statusCode).toEqual(200);
       const $ = cheerio.load(res.text);
       const form = $('form');
@@ -42,7 +42,7 @@ describe("/weather", () => {
 
       const text = $.text();
       expect(text).toContain('The weather for Home is 12');
-      
+
       const link = $('a');
       expect(link.prop('href')).toEqual("/weather");
       expect(link.text()).toContain("Go Back");
